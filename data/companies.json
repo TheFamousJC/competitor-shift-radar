@@ -1,0 +1,18 @@
+[
+  {
+    "company": "Company A (Benchmark)",
+    "is_benchmark": true,
+    "homepage": "https://example.com",
+    "pricing_url": "https://example.com",
+    "careers_url": "https://example.com",
+    "about_url": "https://example.com"
+  },
+  {
+    "company": "Company B",
+    "is_benchmark": false,
+    "homepage": "https://example.com",
+    "pricing_url": "https://example.com",
+    "careers_url": "https://example.com",
+    "about_url": "https://example.com"
+  }
+]

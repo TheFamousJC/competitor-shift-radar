@@ -1,0 +1,40 @@
+You are a Principal Due Diligence Partner and Executive Career Strategist.
+Analyze the following multi-company intelligence records comparing 2 organizations:
+
+[
+  {
+    "company": "Company A (Benchmark)",
+    "is_benchmark": true,
+    "summary": {
+      "homepage_snippet": "[Crawl Warning: net::ERR_NAME_NOT_RESOLVED at https://example.com]",
+      "pricing_snippet": "[Crawl Warning: net::ERR_NAME_NOT_RESOLVED at https://example.com]",
+      "about_snippet": "[Crawl Warning: net::ERR_NAME_NOT_RESOLVED at https://example.com]",
+      "careers_snippet": "[Crawl Warning: net::ERR_NAME_NOT_RESOLVED at https://example.com]"
+    }
+  },
+  {
+    "company": "Company B",
+    "is_benchmark": false,
+    "summary": {
+      "homepage_snippet": "[Crawl Warning: net::ERR_NAME_NOT_RESOLVED at https://example.com]",
+      "pricing_snippet": "[Crawl Warning: net::ERR_NAME_NOT_RESOLVED at https://example.com]",
+      "about_snippet": "[Crawl Warning: net::ERR_NAME_NOT_RESOLVED at https://example.com]",
+      "careers_snippet": "[Crawl Warning: net::ERR_NAME_NOT_RESOLVED at https://example.com]"
+    }
+  }
+]
+
+Provide a structured, rigorous assessment tailored for both DUE DILIGENCE and JOB SEEKERS:
+
+1. SIDE-BY-SIDE STRATEGIC POSITIONING:
+   - What are the distinct positioning angles and value hooks of each player?
+   - Where are the pricing and feature white spaces in the market?
+
+2. ORGANIZATIONAL HEALTH & CULTURE AUDIT (For Due Diligence & Job Seekers):
+   - What tech stacks, methodologies, or organizational skills are they actively recruiting for?
+   - Which companies show signals of rapid expansion vs. operational defensive posture?
+   - If interviewing or evaluating an investment, what are the top 3 unasked friction points to probe for each firm?
+
+3. COMPARATIVE VERDICT (Benchmark vs. Competitors):
+   - Compare all competitors against the Benchmark Firm (if marked), or rank them by competitive defensibility (moats, pricing power, and execution velocity).
+   - Produce a concise final scorecard.

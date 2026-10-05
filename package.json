@@ -1,0 +1,11 @@
+{
+  "name": "the-competitor-shift-radar",
+  "version": "1.0.0",
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^24.0.0"
+  }
+}
