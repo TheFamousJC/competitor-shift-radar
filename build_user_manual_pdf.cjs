@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 (async () => {
-  console.log("Generating Updated General User Manual PDF (18 Angles, Dossier Exports)...");
+  console.log("Generating Updated General User Manual PDF (18 Frameworks, Clear Roster, Dossier Exports)...");
 
   let logoBase64 = "";
   const logoPath = path.join(__dirname, 'templates', 'logo_white.png');
@@ -31,7 +31,7 @@ const path = require('path');
       }
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-    body { color: #0f172a; line-height: 1.45; font-size: 9.2pt; }
+    body { color: #0f172a; line-height: 1.45; font-size: 9.1pt; }
     .page { page-break-after: always; min-height: 260mm; position: relative; }
     .page:last-child { page-break-after: avoid; }
     .header-banner {
@@ -65,7 +65,7 @@ const path = require('path');
 </head>
 <body>
 
-  <!-- PAGE 1: UNIVERSAL RADAR WORKFLOW -->
+  <!-- PAGE 1: SYSTEM OVERVIEW & WORKFLOW -->
   <div class="page">
     <div class="header-banner">
       <img src="${logoBase64}" class="header-logo" alt="3Sci Logo">
@@ -76,91 +76,91 @@ const path = require('path');
     </div>
 
     <h1>Universal Comparative Intelligence & Executive Dossier Engine</h1>
-    <p>The <strong>3Sci Competitor Shift Radar</strong> is a zero-telemetry, client-side intelligence suite built for corporate strategists, M&A partners, procurement leads, and analysts. It transforms raw entity rosters into authentic, AI-differentiated comparative matrices and formatted executive dossiers covering 18 domain-specific analytical frameworks.</p>
+    <p>The <strong>3Sci Competitor Shift Radar</strong> is a zero-telemetry, client-side intelligence platform designed for founders, corporate strategists, procurement leads, and M&A analysts. It converts raw target rosters into structured comparative matrices and ready-to-share executive briefings across 18 specialized analytical angles.</p>
 
     <h2>1. The 3-Step Rapid Intelligence Workflow</h2>
     <div class="grid-2">
       <div class="card card-accent">
-        <h3>Step 1: Set Up Roster & API Key</h3>
-        <p>Enter your free Google Gemini API Key in the top header bar (stored locally in browser storage). Add up to 10 entities (enterprises, startups, political figures, sports icons, or authors). Mark one as the <strong>★ Primary / Benchmark Baseline</strong>.</p>
+        <h3>Step 1: Roster & Global API Key</h3>
+        <p>Enter your Google Gemini API Key into the top header bar (stored locally in browser storage). Enter company/subject names in the left-hand roster (up to 10 entities). Mark one as the <strong>★ Benchmark Baseline</strong>. Use <strong>🗑 Clear Roster</strong> whenever starting a fresh evaluation.</p>
       </div>
       <div class="card card-accent">
-        <h3>Step 2: Generate Differentiated Matrix</h3>
-        <p>Toggle your active comparison parameters (e.g., <em>General Landscape Overview</em>, <em>Core Product</em>, <em>Pricing Tiers</em>). Click <strong>⚡ Populate Matrix with AI</strong> for authentic intelligence, or click into any table cell to edit directly.</p>
+        <h3>Step 2: Dynamic Matrix Differentiation</h3>
+        <p>Toggle your active comparison parameters (e.g. <em>General Landscape Overview</em>, <em>Core Product</em>, <em>Pricing Strategy</em>). Click <strong>⚡ Populate Matrix with AI</strong> for authentic company-specific intelligence, or click into any cell to edit notes directly.</p>
       </div>
     </div>
 
     <div class="card card-gemini">
-      <h3>Step 3: Executive Report Generation & Dissemination</h3>
-      <p>Select from 18 analytical angles (e.g., <em>Product & Price Comparisons</em>, <em>SWOT</em>, <em>Political Stance</em>, <em>Personalities & Achievements</em>). Click <strong>⚡ Generate Report using AI</strong> to run Gemini 3.8 Flash, or <strong>📋 Generate Prompt</strong> to copy formatted prompts for ChatGPT or Claude. Export instantly to <strong>.DOC</strong> or print-ready <strong>PDF</strong>.</p>
+      <h3>Step 3: Dual Intelligence Execution & Dossier Export</h3>
+      <p>Select from 18 analytical frameworks (e.g., <em>Product Comparison and Price Comparisons</em>, <em>SWOT</em>, <em>Political Stance</em>, <em>Personalities & Achievements</em>). Click <strong>⚡ Generate Report using AI</strong> to run Gemini 3.8 Flash, or <strong>📋 Generate Prompt</strong> to export formatted prompts for ChatGPT or Claude. Export instantly to formatted <strong>.DOC</strong> or print-ready <strong>PDF</strong>.</p>
     </div>
 
-    <h2>2. Configurable Matrix Comparison Dimensions</h2>
+    <h2>2. Configurable Comparison Dimensions</h2>
     <table>
       <thead>
         <tr>
           <th style="width: 28%;">Parameter Dimension</th>
           <th style="width: 32%;">Analytical Focus</th>
-          <th style="width: 40%;">Strategic Utility</th>
+          <th style="width: 40%;">Primary Strategic Value</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><strong>★ General Landscape Overview</strong></td>
           <td>High-level categorization & strategic posture</td>
-          <td>Executive overview without granular detail; ideal for board briefings.</td>
+          <td>Delivers clean synthesis without granular clutter; ideal for fast executive reviews.</td>
         </tr>
         <tr>
           <td><strong>Core Product / Value Prop</strong></td>
-          <td>Flagship offering, platform capabilities, or signature works</td>
-          <td>Evaluates functional overlap, flagship differentiators, and commoditization risks.</td>
+          <td>Flagship offering, core portfolio, platform moats</td>
+          <td>Exposes functional overlap, capability gaps, and commoditization liabilities.</td>
         </tr>
         <tr>
           <td><strong>Target Customer & Positioning</strong></td>
           <td>Buyer personas, addressable market, constituent base</td>
-          <td>Pinpoints customer segments or voter demographics neglected by contenders.</td>
+          <td>Identifies underserved demographics or procurement accounts neglected by rivals.</td>
         </tr>
         <tr>
           <td><strong>Observed Moat / Vulnerability</strong></td>
-          <td>Structural defensibility, lock-in, churn liabilities</td>
-          <td>Exposes fragility where the benchmark entity can exploit rivals.</td>
+          <td>Structural defensibility, lock-in, churn risk</td>
+          <td>Reveals critical vulnerabilities where the benchmark firm can counter-position.</td>
         </tr>
         <tr>
           <td><strong>Pricing Strategy & Tiers</strong></td>
           <td>Monetization models, subscription tiers, TCO friction</td>
-          <td>Compares pricing power elasticity, packaging traps, and discounting opacity.</td>
+          <td>Exposes pricing power elasticity, discounting opacity, and packaging traps.</td>
         </tr>
         <tr>
           <td><strong>Tech Stack / Velocity</strong></td>
           <td>Infrastructure modernity, engineering velocity</td>
-          <td>Evaluates technology debt vs. rapid AI-driven platform delivery.</td>
+          <td>Measures software delivery speed and vulnerability to AI-driven paradigm shifts.</td>
         </tr>
       </tbody>
     </table>
 
     <div class="footer-note">
-      <strong>Data Privacy Guarantee:</strong> 100% Client-Side Architecture. API keys and target data remain inside your browser sandbox. No server-side tracking.
+      <strong>Data Privacy Guarantee:</strong> 100% Client-Side Architecture. API keys and target data remain entirely inside your browser sandbox. Zero telemetry or server tracking.
     </div>
   </div>
 
-  <!-- PAGE 2: 18 REPORTING FRAMEWORKS -->
+  <!-- PAGE 2: 18 REPORTING FRAMEWORKS & EXPORT ARCHITECTURE -->
   <div class="page">
     <div class="header-banner">
       <img src="${logoBase64}" class="header-logo" alt="3Sci Logo">
       <div class="header-title-box">
-        <div class="header-title">18 ANALYTICAL LENSES</div>
-        <div class="header-sub">Corporate, Commercial, Political & Cultural Frameworks</div>
+        <div class="header-title">18 ANALYTICAL FRAMEWORKS</div>
+        <div class="header-sub">Corporate, Commercial, Political & Cultural Lenses</div>
       </div>
     </div>
 
     <h2>3. The 18 Domain-Specific Reporting Frameworks</h2>
-    <p>The workspace dynamically adjusts its analysis, scoring rubrics, and diagnostic questions based on your chosen angle:</p>
+    <p>Selecting any reporting angle recalibrates the underlying intelligence directives, scoring scorecards, and diagnostic inquiries:</p>
 
     <table>
       <thead>
         <tr>
-          <th style="width: 32%;">Report Angle</th>
-          <th style="width: 68%;">Core Investigative Focus & Output Architecture</th>
+          <th style="width: 34%;">Report Angle</th>
+          <th style="width: 66%;">Analytical Focus & Output Deliverables</th>
         </tr>
       </thead>
       <tbody>
@@ -170,54 +170,54 @@ const path = require('path');
         </tr>
         <tr>
           <td><strong>Competitor Profile & Market Share</strong></td>
-          <td>Origins, leadership ethos, operational footprint, addressable segment dominance, and customer acquisition momentum.</td>
+          <td>Organizational origins, leadership ethos, operational footprint, addressable segment dominance, and expansion velocity.</td>
         </tr>
         <tr>
-          <td><strong>SWOT & Defensibility</strong></td>
-          <td>Forensic Strengths, Weaknesses, Opportunities, and Threats contrasting contenders against the designated benchmark.</td>
+          <td><strong>SWOT & Commercial Defensibility</strong></td>
+          <td>Forensic Strengths, Weaknesses, Opportunities, and Threats contrasting contenders against the benchmark.</td>
         </tr>
         <tr>
           <td><strong>Feature Comparison & Win/Loss</strong></td>
-          <td>Direct capability parity, evaluation criteria, primary sales objections, buyer deal-breakers, and churn drivers.</td>
+          <td>Capability parity ledger, primary sales objections, evaluation deal-breakers, and customer churn drivers.</td>
         </tr>
         <tr>
           <td><strong>Customer Sentiment & Reviews</strong></td>
-          <td>Public perception, NPS signals, brand loyalty, recurring customer complaints, and advocacy metrics.</td>
+          <td>Public perception, NPS signals, brand loyalty, recurring complaints, and customer advocacy metrics.</td>
         </tr>
         <tr>
           <td><strong>Sales & Strategy Positioning</strong></td>
-          <td>Go-to-market execution, revenue stability, category wedges, brand narratives, and counter-positioning levers.</td>
+          <td>Go-to-market execution, revenue defensibility, category wedges, brand narratives, and counter-positioning vectors.</td>
         </tr>
         <tr>
           <td><strong>Technology & Ecosystems</strong></td>
-          <td>Engineering velocity, IP moats, developer integrations, channel resellers, and disruption vulnerability.</td>
+          <td>Engineering velocity, IP defensibility, developer integrations, channel resellers, and disruption risks.</td>
         </tr>
         <tr>
           <td><strong>Digital Marketing & Social Media</strong></td>
-          <td>SEO authority, paid acquisition reach, share of voice, audience engagement depth, and executive personal branding.</td>
+          <td>SEO authority, paid acquisition reach, share of voice, engagement depth, and executive personal branding.</td>
         </tr>
         <tr>
           <td><strong>Emerging Threats & Disruptors</strong></td>
-          <td>Unobserved edge players, cross-industry invaders, open-source alternatives, and macro structural headwinds.</td>
+          <td>Unobserved edge contenders, cross-industry invaders, open-source alternatives, and structural headwinds.</td>
         </tr>
         <tr>
           <td><strong>Political Stance & Main Policies</strong></td>
-          <td>Ideological alignment, legislative voting records, platform planks, voter coalition loyalty, and rhetorical liabilities.</td>
+          <td>Ideological alignment, legislative voting records, platform planks, voter coalition loyalty, and rhetorical contradictions.</td>
         </tr>
         <tr>
           <td><strong>Personalities & Achievements</strong></td>
-          <td>Comparative dossier for athletes, authors, scientists, and creators covering career milestones, titles, and historical legacy.</td>
+          <td>Comparative dossiers for sports icons, authors, artists, and leaders covering career peaks, titles, and historical legacy.</td>
         </tr>
       </tbody>
     </table>
 
-    <h2>4. Structured Executive Dossier Exports</h2>
+    <h2>4. Structured Executive Dossier Export Engine</h2>
     <div class="card card-accent">
-      <p>Clicking <strong>📄 Download Report (.DOC)</strong> or <strong>🖨️ Download Report (PDF)</strong> generates a structured executive briefing packet that includes:</p>
+      <p>Clicking <strong>📄 Download Report (.DOC)</strong> or <strong>🖨️ Download Report (PDF)</strong> generates a publication-grade briefing containing:</p>
       <ul style="padding-left: 18px; margin-top: 4px; font-size: 8.5pt; color: #334155;">
-        <li><strong>Executive Overview Table:</strong> Formal header displaying framework, benchmark subject, cohort list, active dimensions, and evaluation date.</li>
+        <li><strong>Executive Overview Table:</strong> Header table detailing framework, benchmark baseline, cohort list, active dimensions, and evaluation date.</li>
         <li><strong>Embedded Landscape Matrix:</strong> The complete multi-parameter comparison table rendered prior to the detailed narrative.</li>
-        <li><strong>Parsed Executive Narrative:</strong> Formatted headings, subheadings, bullet lists, scorecards, and sharp diagnostic inquiries.</li>
+        <li><strong>Parsed Intelligence Briefing:</strong> Clean styling, highlighted metrics, structured scorecards, and sharp diagnostic inquiries.</li>
       </ul>
     </div>
 
@@ -226,31 +226,31 @@ const path = require('path');
     </div>
   </div>
 
-  <!-- PAGE 3: PLAYBOOKS & STRATEGIC METHODOLOGY -->
+  <!-- PAGE 3: PLAYBOOKS & OPERATIONAL GUIDELINES -->
   <div class="page">
     <div class="header-banner">
       <img src="${logoBase64}" class="header-logo" alt="3Sci Logo">
       <div class="header-title-box">
         <div class="header-title">EXECUTIVE PLAYBOOKS</div>
-        <div class="header-sub">Founders, Procurement, Investors & Analysts</div>
+        <div class="header-sub">Operational Use Cases & Decision Rubrics</div>
       </div>
     </div>
 
     <h2>5. Executive Use Cases by Role</h2>
 
     <div class="card card-accent">
-      <h3>For Enterprise Procurement & Commercial Officers: Vendor Negotiation</h3>
-      <p>Select the <strong>Product Comparison and Price Comparisons</strong> angle. Use the generated Feature-by-Feature Value Ledger and Diagnostic Buyer Questions to expose hidden renewals, tier lock-ins, and licensing traps before signing enterprise contracts.</p>
+      <h3>For Enterprise Procurement & Pricing Strategists: Contract Negotiation</h3>
+      <p>Select the <strong>Product Comparison and Price Comparisons</strong> angle. Use the Feature-by-Feature Value Ledger and Diagnostic Buyer Inquiries to uncover hidden fees, renewal escalators, and packaging traps before executing enterprise vendor agreements.</p>
     </div>
 
     <div class="card card-gemini">
-      <h3>For Corporate Strategists & Founders: Asymmetric Counter-Positioning</h3>
-      <p>Benchmark your firm against 4–6 market incumbents. Use the <em>Observed Moat</em> and <em>Target Customer</em> parameters to uncover underserved segments and craft positioning campaigns that exploit incumbents' pricing rigidity.</p>
+      <h3>For Corporate Founders & Strategists: Asymmetric Counter-Positioning</h3>
+      <p>Benchmark your offering against market incumbents. Use the <em>Observed Moat</em> and <em>Target Customer</em> parameters to uncover underserved buyer cohorts and build messaging campaigns that exploit incumbents' pricing rigidity.</p>
     </div>
 
     <div class="card card-accent">
-      <h3>For Campaign Strategists & Political Analysts: Policy Contrast Memos</h3>
-      <p>Select the <strong>Political Stance and Main Policies</strong> angle. Contrast political figures or parties across key legislative planks, voter coalition loyalty, and policy contradictions to prepare for debates or legislative analysis.</p>
+      <h3>For Campaign Strategists & Political Analysts: Policy Contrast Briefs</h3>
+      <p>Select the <strong>Political Stance and Main Policies</strong> angle. Contrast political candidates or parties across key legislative planks, voter coalition loyalty, and policy contradictions to prepare for debates or legislative analysis.</p>
     </div>
 
     <div class="card card-gemini">
@@ -269,15 +269,15 @@ const path = require('path');
       <tbody>
         <tr>
           <td><strong>Gemini API Error</strong></td>
-          <td>Confirm that your Google Gemini API key is pasted into the top header bar and that your browser allows outbound HTTPS calls to Google Generative Language endpoints.</td>
+          <td>Confirm that your Google Gemini API key is entered into the top header bar and that your browser allows outbound HTTPS calls to Google Generative Language endpoints.</td>
         </tr>
         <tr>
-          <td><strong>Customizing Matrix Notes</strong></td>
-          <td>Click directly into any cell in the Competitive Summary Matrix. Cells are fully editable (<code>contenteditable</code>) and synchronize into your downloaded Word/PDF dossier.</td>
+          <td><strong>Customizing Matrix Cells</strong></td>
+          <td>Click directly into any cell in the Competitive Summary Matrix. Cells are editable (<code>contenteditable</code>) and synchronize into your downloaded Word/PDF dossier.</td>
         </tr>
         <tr>
-          <td><strong>External AI Workflows</strong></td>
-          <td>Click <strong>📋 Generate Prompt</strong> and then <strong>Copy Prompt</strong> to paste the synthesized intelligence prompt directly into ChatGPT Plus, Claude Team, or Perplexity Pro.</td>
+          <td><strong>Clearing the Cohort</strong></td>
+          <td>Click <strong>🗑 Clear Roster</strong> in the left panel to reset all inputs down to a clean slate and clear cached data.</td>
         </tr>
       </tbody>
     </table>

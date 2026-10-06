@@ -104,7 +104,7 @@ const path = require('path');
 </head>
 <body>
 
-  <!-- PAGE 1: PREREQUISITES & SETUP -->
+  <!-- PAGE 1: PREREQUISITES & ENVIRONMENT SETUP -->
   <div class="page">
     <div class="header-banner">
       <img src="${logoBase64}" class="header-logo" alt="3Sci Logo">
@@ -165,15 +165,13 @@ npm install puppeteer</div>
 ├── build_technical_manual_pdf.cjs       <- Compiles 4-Page Technical Manual PDF
 ├── package.json                         <- Project metadata and npm dependency manifest
 ├── .gitignore                           <- Excludes node_modules/ from version control
-├── data/
-│   └── companies.json                   <- Roster configuration (Names & benchmark flags)
 └── templates/
     └── logo_white.png                   <- High-resolution brand asset for headers</div>
 
     <div class="footer-note">3Sci Open Source Work Hack #4 • Environment Configuration • 3sci.com</div>
   </div>
 
-  <!-- PAGE 2: DATA SCHEMAS & SCRIPTS -->
+  <!-- PAGE 2: ARCHITECTURE & SCRIPTS -->
   <div class="page">
     <div class="header-banner">
       <img src="${logoBase64}" class="header-logo" alt="3Sci Logo">
@@ -183,7 +181,7 @@ npm install puppeteer</div>
       </div>
     </div>
 
-    <h2>4. Target Roster Schema (data/companies.json)</h2>
+    <h2>4. Target Roster In-Memory Schema</h2>
     <p>The system is streamlined around entity names. The <code>is_benchmark</code> flag identifies the primary baseline that all contenders are systematically evaluated against:</p>
 
     <div class="code-box">[
@@ -202,17 +200,15 @@ const path = require('path');
 
 (async () => {
   console.log("Initializing headless competitive crawler...");
-  const dataPath = path.join(__dirname, 'data', 'companies.json');
-  
-  if (!fs.existsSync(dataPath)) {
-    console.error("Error: data/companies.json missing.");
-    process.exit(1);
-  }
-
-  const companies = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
   const browser = await puppeteer.launch({ headless: 'new' });
   const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36');
+
+  // Roster array can be read from memory or external JSON
+  const companies = [
+    { name: "Benchmark Baseline", is_benchmark: true },
+    { name: "Contender Alpha", is_benchmark: false }
+  ];
 
   let outputSummary = "# Competitive Matrix Dossier\\n\\n";
   outputSummary += "| Subject | Evaluation Role | Ingestion Status |\\n| :--- | :--- | :--- |\\n";

@@ -471,7 +471,7 @@
     <div class="panel">
       <div class="panel-header">
         <span class="panel-title">Target Roster (<span id="target-count">6</span>/10)</span>
-        <button class="btn-copy" onclick="downloadJsonConfig()">💾 Save JSON</button>
+        <button class="btn-copy" onclick="clearRoster()" style="color:#f87171; border-color:#7f1d1d;" title="Clear and reset roster">🗑 Clear Roster</button>
       </div>
 
       <div id="company-list" style="display:flex; flex-direction:column; gap:8px;"></div>
@@ -739,6 +739,22 @@
       }
     }
 
+    function clearRoster() {
+      if (confirm("Clear all targets and start with a clean roster?")) {
+        companies = [
+          { name: "My Firm (Benchmark)", is_benchmark: true },
+          { name: "", is_benchmark: false }
+        ];
+        matrixData = {};
+        rawReportMarkdown = "";
+        const reportWrapper = document.getElementById('report-wrapper');
+        if (reportWrapper) reportWrapper.style.display = 'none';
+        const promptWrapper = document.getElementById('prompt-wrapper');
+        if (promptWrapper) promptWrapper.style.display = 'none';
+        renderAll();
+      }
+    }
+
     function getCellContent(companyName, paramKey, isBench) {
       if (matrixData[companyName] && matrixData[companyName][paramKey]) {
         return { text: matrixData[companyName][paramKey], isCustom: true };
@@ -984,7 +1000,6 @@ The JSON keys must be the exact subject names. Each subject object must contain 
       pWrapper.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Markdown-to-HTML parser for executive reports
     function formatMarkdownToHtml(md) {
       if (!md) return '';
       let text = md.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -1082,7 +1097,6 @@ The JSON keys must be the exact subject names. Each subject object must contain 
       }
     }
 
-    // Builds the structured Executive Overview Table and Landscape Matrix for exports
     function generateExportDossierHtml() {
       const angleTitle = document.getElementById('report-angle').selectedOptions[0].text;
       const benchmarkCompany = companies.find(c => c.is_benchmark) || companies[0];
@@ -1090,7 +1104,6 @@ The JSON keys must be the exact subject names. Each subject object must contain 
       const activeParamTitles = activeParams.map(p => parameterDefs[p].title).join(" • ");
       const formattedReportBody = formatMarkdownToHtml(rawReportMarkdown);
 
-      // Section 1: Executive Overview Table
       let overviewHtml = `
         <div style="background:#090f17; color:#ffffff; padding:16px 20px; border-radius:6px; margin-bottom:16px;">
           <table style="width:100%; border:none; border-collapse:collapse;">
@@ -1133,7 +1146,6 @@ The JSON keys must be the exact subject names. Each subject object must contain 
         </table>
       `;
 
-      // Section 2: Full Landscape Matrix Table
       overviewHtml += `
         <h2 style="color:#0f172a; font-size:12.5pt; font-weight:800; margin-top:16px; margin-bottom:8px; border-bottom:1.5px solid #cbd5e1; padding-bottom:4px;">
           2. Comparative Landscape Synthesis Matrix
@@ -1168,7 +1180,6 @@ The JSON keys must be the exact subject names. Each subject object must contain 
         </table>
       `;
 
-      // Section 3: Deep AI Narrative
       overviewHtml += `
         <h2 style="color:#0f172a; font-size:12.5pt; font-weight:800; margin-top:22px; margin-bottom:10px; border-bottom:1.5px solid #cbd5e1; padding-bottom:4px;">
           3. Detailed Strategic Intelligence Briefing
@@ -1186,7 +1197,6 @@ The JSON keys must be the exact subject names. Each subject object must contain 
       return overviewHtml;
     }
 
-    // Download formatted executive report as Word .DOC
     function downloadReportDoc() {
       if (!rawReportMarkdown) {
         alert("Please generate a report using AI first.");
@@ -1224,7 +1234,6 @@ The JSON keys must be the exact subject names. Each subject object must contain 
       URL.revokeObjectURL(url);
     }
 
-    // Print / Save as PDF with Executive Dossier layout
     function printReportPdf() {
       if (!rawReportMarkdown) {
         alert("Please generate a report using AI first.");
@@ -1257,7 +1266,6 @@ The JSON keys must be the exact subject names. Each subject object must contain 
       printWin.document.close();
     }
 
-    // Print only the matrix table
     function printMatrixOnly() {
       let matrixTableHtml = document.getElementById('matrix-display').outerHTML;
       const printWin = window.open('', '', 'width=980,height=600');
@@ -1287,7 +1295,6 @@ The JSON keys must be the exact subject names. Each subject object must contain 
       printWin.document.close();
     }
 
-    // Export Matrix Table to .DOC
     function exportMatrixToWordDoc() {
       let doc = `
         <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
@@ -1348,16 +1355,6 @@ The JSON keys must be the exact subject names. Each subject object must contain 
           btn.style.color = "";
         }, 1800);
       });
-    }
-
-    function downloadJsonConfig() {
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(companies, null, 2));
-      const a = document.createElement('a');
-      a.href = dataStr;
-      a.download = "companies.json";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
     }
 
     function renderAll() {
