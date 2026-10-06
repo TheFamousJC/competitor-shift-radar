@@ -17,9 +17,10 @@
       --benchmark: #38bdf8;
       --danger: #ef4444;
       --gemini: #4ade80;
+      --tag-bg: #182535;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-    body { background-color: var(--bg); color: var(--text); padding: 26px 36px; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
+    body { background-color: var(--bg); color: var(--text); padding: 24px 34px; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
     
     header {
       display: flex;
@@ -51,12 +52,12 @@
 
     .main-grid {
       display: grid;
-      grid-template-columns: 380px 1fr;
+      grid-template-columns: 370px 1fr;
       gap: 22px;
       flex-grow: 1;
     }
 
-    /* Left: Clean Company Name Input Panel */
+    /* Left Panel: Target Roster */
     .panel {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -65,7 +66,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      max-height: 820px;
+      max-height: 840px;
       overflow-y: auto;
     }
     .panel-header {
@@ -162,7 +163,7 @@
     .dashboard {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 18px;
     }
     .matrix-box {
       background: var(--card-bg);
@@ -180,6 +181,47 @@
       border-bottom: 1px solid var(--card-border);
       padding-bottom: 10px;
     }
+
+    /* Parameter Selector Ribbon */
+    .params-container {
+      background: #0b131f;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .params-label {
+      font-size: 11.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+    }
+    .params-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pill-checkbox {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--tag-bg);
+      border: 1px solid #27384e;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #cbd5e1;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+    .pill-checkbox:hover { border-color: var(--accent); }
+    .pill-checkbox input { accent-color: var(--accent); cursor: pointer; }
+    .pill-checkbox.active { background: rgba(0, 210, 180, 0.15); border-color: var(--accent); color: #fff; }
+
     .matrix-table {
       width: 100%;
       border-collapse: collapse;
@@ -228,28 +270,16 @@
       font-size: 12px;
       outline: none;
     }
-    .textarea-custom {
-      width: 100%;
-      min-height: 55px;
-      background: #090f17;
-      border: 1px solid var(--card-border);
-      color: #fff;
-      padding: 8px 10px;
-      border-radius: 6px;
-      font-size: 12px;
-      outline: none;
-      resize: vertical;
-    }
 
     /* Live Gemini 3.8 Runner */
     .gemini-runner-box {
       background: #09131a;
       border: 1px solid #164e63;
       border-radius: 8px;
-      padding: 12px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
     .btn-run-report {
       background: var(--gemini);
@@ -268,18 +298,34 @@
     .btn-run-report:hover { background: #86efac; }
     .btn-run-report:disabled { opacity: 0.6; cursor: not-allowed; }
 
+    /* Report Output Container */
+    .report-output-wrapper {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .report-actions-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #051017;
+      padding: 8px 12px;
+      border: 1px solid #155e75;
+      border-radius: 6px 6px 0 0;
+    }
     .report-output-box {
       background: #04090e;
       border: 1px solid #155e75;
-      border-radius: 6px;
-      padding: 14px;
+      border-top: none;
+      border-radius: 0 0 6px 6px;
+      padding: 16px;
       color: #e2e8f0;
       font-size: 12.5px;
       line-height: 1.6;
       white-space: pre-wrap;
-      max-height: 380px;
+      max-height: 420px;
       overflow-y: auto;
-      display: none;
     }
 
     .prompt-box {
@@ -305,8 +351,23 @@
       font-weight: 700;
       border-radius: 4px;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
     .btn-copy:hover { background: var(--accent); color: #090f17; }
+
+    .btn-download-report {
+      background: #155e75;
+      color: #e0f2fe;
+      border: 1px solid #0284c7;
+      padding: 5px 11px;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-download-report:hover { background: #0284c7; color: #fff; }
 
     footer {
       display: flex;
@@ -319,6 +380,18 @@
       color: var(--text-muted);
     }
     .footer-link { color: var(--accent); text-decoration: none; font-weight: 700; }
+
+    /* Printable view: Prints clean report */
+    @media print {
+      body { background: #fff !important; color: #000 !important; padding: 10mm; }
+      header { border-bottom: 2px solid #000; margin-bottom: 12px; }
+      .badge, .panel, footer, .params-container, .box-header div button, .controls-grid, .gemini-runner-box > div:first-child, .gemini-runner-box > div:nth-child(2), .report-actions-bar, .prompt-box, button { display: none !important; }
+      .main-grid { display: block !important; }
+      .matrix-box, .workspace-card, .gemini-runner-box { border: none !important; padding: 0 !important; background: transparent !important; }
+      .matrix-table th { background: #f1f5f9 !important; color: #000 !important; border: 1px solid #cbd5e1; }
+      .matrix-table td { color: #000 !important; border: 1px solid #cbd5e1; }
+      .report-output-box { border: 1px solid #cbd5e1 !important; color: #000 !important; background: #fff !important; max-height: none !important; overflow: visible !important; }
+    }
   </style>
 </head>
 <body>
@@ -328,7 +401,7 @@
       <img src="templates/logo_white.png" class="brand-logo" alt="3Sci Logo" onerror="this.style.display='none'">
       <div>
         <div class="brand-title">3SCI COMPETITOR SHIFT RADAR</div>
-        <div style="font-size: 12.5px; color: var(--text-muted);">Names-Only Input • Auto-Generated Matrix • Gemini 3.8 Flash Reports</div>
+        <div style="font-size: 12.5px; color: var(--text-muted);">Configurable Matrix Parameters • Gemini 3.8 Flash Reports • DOC/PDF Downloads</div>
       </div>
     </div>
     <div class="badge">Work Hack #4</div>
@@ -354,26 +427,59 @@
         <div class="box-header">
           <div>
             <span style="font-weight:800; font-size:13px; text-transform:uppercase; color:var(--text);">Auto-Generated Competitive Summary Matrix</span>
-            <div style="font-size:11.5px; color:var(--text-muted); margin-top:2px;">Synthesized landscape profile derived from target roster</div>
+            <div style="font-size:11.5px; color:var(--text-muted); margin-top:2px;">Select parameters below to add or remove comparison dimensions</div>
           </div>
           <div style="display:flex; gap:8px;">
-            <button class="btn-copy" onclick="exportToWordDoc()">📄 Export .DOC</button>
-            <button class="btn-copy" onclick="window.print()">🖨️ Print PDF</button>
+            <button class="btn-copy" onclick="exportMatrixToWordDoc()">📄 Export Matrix .DOC</button>
+            <button class="btn-copy" onclick="window.print()">🖨️ Print Matrix PDF</button>
+          </div>
+        </div>
+
+        <!-- NEW: Dynamic Parameter Filter Ribbon -->
+        <div class="params-container">
+          <div class="params-label">Active Comparison Parameters (Toggle to Add / Remove):</div>
+          <div class="params-pills">
+            <label class="pill-checkbox active" id="pill-general">
+              <input type="checkbox" id="param-general" checked onchange="toggleParameter('general')">
+              <span>★ General Landscape Overview</span>
+            </label>
+            <label class="pill-checkbox active" id="pill-product">
+              <input type="checkbox" id="param-product" checked onchange="toggleParameter('product')">
+              <span>Core Product / Value Prop</span>
+            </label>
+            <label class="pill-checkbox active" id="pill-target">
+              <input type="checkbox" id="param-target" checked onchange="toggleParameter('target')">
+              <span>Target Customer & Positioning</span>
+            </label>
+            <label class="pill-checkbox active" id="pill-moat">
+              <input type="checkbox" id="param-moat" checked onchange="toggleParameter('moat')">
+              <span>Observed Moat / Vulnerability</span>
+            </label>
+            <label class="pill-checkbox" id="pill-pricing">
+              <input type="checkbox" id="param-pricing" onchange="toggleParameter('pricing')">
+              <span>Pricing Strategy & Tiers</span>
+            </label>
+            <label class="pill-checkbox" id="pill-tech">
+              <input type="checkbox" id="param-tech" onchange="toggleParameter('tech')">
+              <span>Tech Stack / Velocity</span>
+            </label>
+            <label class="pill-checkbox" id="pill-culture">
+              <input type="checkbox" id="param-culture" onchange="toggleParameter('culture')">
+              <span>Hiring & Culture Signals</span>
+            </label>
           </div>
         </div>
 
         <div style="overflow-x:auto;">
           <table class="matrix-table" id="matrix-display">
             <thead>
-              <tr>
-                <th style="width:18%;">Company</th>
-                <th style="width:14%;">Role</th>
-                <th style="width:26%;">Estimated Core Product / Value Prop</th>
-                <th style="width:22%;">Target Customer & Positioning</th>
-                <th style="width:20%;">Observed Moat / Vulnerability</th>
+              <tr id="matrix-header-row">
+                <!-- Dynamically generated header cells -->
               </tr>
             </thead>
-            <tbody id="matrix-body"></tbody>
+            <tbody id="matrix-body">
+              <!-- Dynamically generated rows -->
+            </tbody>
           </table>
         </div>
 
@@ -406,13 +512,24 @@
               <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" style="color:#38bdf8; font-size:11px; text-decoration:none;">Get free Google AI API key ↗</a>
             </div>
             <div style="display:flex; gap:8px;">
-              <input type="password" class="input-field" id="gemini-api-key" placeholder="Enter Gemini API key..." oninput="saveApiKey(this.value)" style="flex:1;">
+              <input type="password" class="input-field" id="gemini-api-key" placeholder="Enter Gemini API key (stored in local browser storage)..." oninput="saveApiKey(this.value)" style="flex:1;">
               <button class="btn-run-report" id="btn-run" onclick="runLiveGeminiReport()">
                 <span id="btn-icon">⚡</span>
                 <span id="btn-text">Generate Report</span>
               </button>
             </div>
-            <div class="report-output-box" id="report-output"></div>
+
+            <!-- Downloadable Report Display Area -->
+            <div class="report-output-wrapper" id="report-wrapper">
+              <div class="report-actions-bar">
+                <span style="font-size:12px; font-weight:800; color:var(--gemini);">Executive Report Ready</span>
+                <div style="display:flex; gap:6px;">
+                  <button class="btn-download-report" onclick="downloadReportDoc()">📄 Download Report (.DOC)</button>
+                  <button class="btn-download-report" onclick="printReportPdf()">🖨️ Download Report (PDF)</button>
+                </div>
+              </div>
+              <div class="report-output-box" id="report-output"></div>
+            </div>
           </div>
 
           <!-- Method B: Generate Formatted Prompt for Any AI -->
@@ -443,6 +560,42 @@
       { name: "Competitor Alpha", is_benchmark: false },
       { name: "Target Beta", is_benchmark: false }
     ];
+
+    // Master configuration of selectable parameters
+    const parameterDefs = {
+      general: { id: "general", title: "General Landscape Overview", default: true },
+      product: { id: "product", title: "Core Product / Value Prop", default: true },
+      target: { id: "target", title: "Target Customer & Positioning", default: true },
+      moat: { id: "moat", title: "Observed Moat / Vulnerability", default: true },
+      pricing: { id: "pricing", title: "Pricing Model & Tiers", default: false },
+      tech: { id: "tech", title: "Tech Stack / Velocity", default: false },
+      culture: { id: "culture", title: "Hiring & Culture Signals", default: false }
+    };
+
+    let activeParams = ["general", "product", "target", "moat"];
+
+    function toggleParameter(paramKey) {
+      const checkbox = document.getElementById(`param-${paramKey}`);
+      const pill = document.getElementById(`pill-${paramKey}`);
+      
+      if (checkbox.checked) {
+        if (!activeParams.includes(paramKey)) activeParams.push(paramKey);
+        pill.classList.add('active');
+      } else {
+        activeParams = activeParams.filter(p => p !== paramKey);
+        pill.classList.remove('active');
+      }
+
+      // If user unchecks everything, fall back to general
+      if (activeParams.length === 0) {
+        activeParams = ["general"];
+        document.getElementById("param-general").checked = true;
+        document.getElementById("pill-general").classList.add('active');
+      }
+
+      renderMatrix();
+      generateCustomPrompt();
+    }
 
     function renderCompanyList() {
       const container = document.getElementById('company-list');
@@ -496,33 +649,84 @@
       }
     }
 
-    // Auto-generates summary profiles based on company names and roles
+    // Auto-generates summary profiles based on company names and selected parameters
     function renderMatrix() {
+      const headerRow = document.getElementById('matrix-header-row');
       const tbody = document.getElementById('matrix-body');
-      tbody.innerHTML = '';
+      
+      // Build Headers
+      headerRow.innerHTML = `
+        <th style="width: 17%;">Company</th>
+        <th style="width: 13%;">Role</th>
+      `;
 
+      activeParams.forEach(paramKey => {
+        const th = document.createElement('th');
+        th.innerText = parameterDefs[paramKey].title;
+        headerRow.appendChild(th);
+      });
+
+      // Build Rows
+      tbody.innerHTML = '';
       companies.forEach(c => {
         const isBench = c.is_benchmark;
         const role = isBench ? '<strong style="color:var(--benchmark);">★ Benchmark</strong>' : 'Rival / Target';
-        
-        let estProduct = isBench 
-          ? "Core proprietary offering / primary technology service platform."
-          : `Direct competitor in shared market category targeting adjacent workflows.`;
-        let estTarget = isBench 
-          ? "Established client base seeking premium differentiation and bespoke delivery."
-          : `Mid-to-enterprise buyers evaluating cost efficiency and feature breadth.`;
-        let estMoat = isBench 
-          ? "Domain specialization and workflow agility; watch for commoditization."
-          : `Potential scale advantage or marketing reach; vulnerable to nimble counter-positioning.`;
-
         const tr = document.createElement('tr');
-        tr.innerHTML = `
+
+        let rowHtml = `
           <td><strong>${c.name || 'Unnamed Company'}</strong></td>
           <td>${role}</td>
-          <td><span style="color:#00d2b4;">${estProduct}</span></td>
-          <td>${estTarget}</td>
-          <td>${estMoat}</td>
         `;
+
+        activeParams.forEach(paramKey => {
+          let cellText = "";
+          switch(paramKey) {
+            case "general":
+              cellText = isBench 
+                ? "Proprietary market baseline; high agility, specialized domain positioning."
+                : `Adjacent competitor operating in the same market space; evaluating category differentiation.`;
+              rowHtml += `<td><span style="color:#00d2b4; font-weight:600;">${cellText}</span></td>`;
+              break;
+            case "product":
+              cellText = isBench
+                ? "Core specialized offering & bespoke client solutions."
+                : "Feature-driven product suite targeting shared client operational workflows.";
+              rowHtml += `<td>${cellText}</td>`;
+              break;
+            case "target":
+              cellText = isBench
+                ? "Established clients prioritizing high-touch strategic delivery."
+                : "Enterprise / mid-market procurement evaluating standard market options.";
+              rowHtml += `<td>${cellText}</td>`;
+              break;
+            case "moat":
+              cellText = isBench
+                ? "High trust and execution speed; vulnerable to well-funded copycats."
+                : "Brand presence or distribution scale; vulnerable to targeted counter-positioning.";
+              rowHtml += `<td>${cellText}</td>`;
+              break;
+            case "pricing":
+              cellText = isBench
+                ? "Value-based consulting or custom tier pricing."
+                : "Standard monthly/annual SaaS tiering or billable hours.";
+              rowHtml += `<td>${cellText}</td>`;
+              break;
+            case "tech":
+              cellText = isBench
+                ? "Modern, rapid-prototyping stack with generative AI integration."
+                : "Standard enterprise cloud infrastructure; varying release cycles.";
+              rowHtml += `<td>${cellText}</td>`;
+              break;
+            case "culture":
+              cellText = isBench
+                ? "Lean, high-output team with direct leadership access."
+                : "Departmental team structure; potential role turnover or growth hiring.";
+              rowHtml += `<td>${cellText}</td>`;
+              break;
+          }
+        });
+
+        tr.innerHTML = rowHtml;
         tbody.appendChild(tr);
       });
     }
@@ -537,8 +741,11 @@
         career_health: "Deliver an Executive Career & Organizational Trajectory Report assessing hiring stability, engineering velocity, and operational health."
       };
 
+      const selectedTitles = activeParams.map(p => parameterDefs[p].title).join(", ");
+
       let p = `You are a Principal Corporate Strategist and Due Diligence Partner.\n\n`;
       p += `ASSIGNMENT: ${angleDirectives[angle]}\n\n`;
+      p += `ACTIVE COMPARISON PARAMETERS TO EVALUATE:\n[ ${selectedTitles} ]\n\n`;
       p += `TARGET ROSTER (${companies.length} Companies):\n`;
       companies.forEach((c, idx) => {
         p += `${idx + 1}. ${c.name} ${c.is_benchmark ? '[BENCHMARK / PRIMARY FIRM]' : '[TARGET / COMPETITOR]'}\n`;
@@ -550,7 +757,7 @@
       }
 
       p += `REPORT REQUIREMENTS:\n`;
-      p += `1. Executive Summary & Market Snapshot: Synthesize how these entities stack against each other.\n`;
+      p += `1. Executive Summary & Landscape Synthesis: Analyze each company against the active parameters.\n`;
       p += `2. Comparative Defensibility Scorecard: Rate each from 1-10 on Pricing Power, Moat Depth, and Operational Velocity.\n`;
       p += `3. Benchmark Counter-Positioning: Detail exactly how the Benchmark firm can exploit the structural weaknesses of the other targets.\n`;
       p += `4. Uncomfortable Diagnostic Questions: 3 sharp questions an auditor or candidate should ask leadership to expose vulnerabilities.\n`;
@@ -575,12 +782,13 @@
       }
 
       const promptText = generateCustomPrompt();
+      const wrapper = document.getElementById('report-wrapper');
       const outputDiv = document.getElementById('report-output');
       const btn = document.getElementById('btn-run');
       const btnIcon = document.getElementById('btn-icon');
       const btnText = document.getElementById('btn-text');
 
-      outputDiv.style.display = 'block';
+      wrapper.style.display = 'flex';
       outputDiv.innerText = 'Analyzing company roster with Gemini 3.8 Flash... Please wait...';
       btn.disabled = true;
       btnIcon.innerText = '⏳';
@@ -613,6 +821,123 @@
       }
     }
 
+    // Download the generated report as a Word .DOC file
+    function downloadReportDoc() {
+      const reportText = document.getElementById('report-output').innerText;
+      if (!reportText || reportText.startsWith('Analyzing company roster')) {
+        alert("Please generate a report first.");
+        return;
+      }
+
+      let doc = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head><title>3Sci Executive Due Diligence Report</title>
+        <style>
+          body { font-family: Arial, sans-serif; font-size: 11pt; line-height: 1.5; color: #1e293b; }
+          h1 { color: #0f172a; font-size: 18pt; margin-bottom: 4px; }
+          .sub { color: #64748b; font-size: 10pt; margin-bottom: 18px; }
+          .report-content { font-size: 10.5pt; line-height: 1.6; white-space: pre-wrap; background: #f8fafc; border: 1px solid #cbd5e1; padding: 16px; }
+        </style>
+        </head>
+        <body>
+          <h1>3Sci Executive Due Diligence & Shift Radar Report</h1>
+          <div class="sub">Generated on ${new Date().toLocaleDateString()} • Powered by Gemini 3.8 Flash • 3sci.com</div>
+          <div class="report-content">${reportText}</div>
+        </body>
+        </html>
+      `;
+
+      const blob = new Blob(['\ufeff', doc], { type: 'application/msword' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `3Sci_Executive_Report_${Date.now()}.doc`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // Print / Save the report specifically as PDF
+    function printReportPdf() {
+      const reportText = document.getElementById('report-output').innerText;
+      if (!reportText || reportText.startsWith('Analyzing company roster')) {
+        alert("Please generate a report first.");
+        return;
+      }
+
+      const printWin = window.open('', '', 'width=900,height=700');
+      printWin.document.write(`
+        <html>
+        <head>
+          <title>3Sci Executive Intelligence Report</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 25px; color: #000; line-height: 1.5; }
+            h1 { font-size: 18pt; margin-bottom: 4px; color: #0f172a; }
+            .meta { font-size: 9.5pt; color: #64748b; margin-bottom: 20px; border-bottom: 1px solid #cbd5e1; padding-bottom: 8px; }
+            pre { font-family: Arial, sans-serif; font-size: 10.5pt; white-space: pre-wrap; line-height: 1.6; }
+          </style>
+        </head>
+        <body>
+          <h1>3Sci Executive Shift Radar Report</h1>
+          <div class="meta">Date: ${new Date().toLocaleDateString()} | Engine: Gemini 3.8 Flash | 3sci.com</div>
+          <pre>${reportText}</pre>
+          <script>
+            window.onload = function() { window.print(); window.close(); }
+          <\/script>
+        </body>
+        </html>
+      `);
+      printWin.document.close();
+    }
+
+    // Export Matrix Table to .DOC
+    function exportMatrixToWordDoc() {
+      let doc = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head><title>3Sci Competitive Matrix</title>
+        <style>
+          body { font-family: Arial, sans-serif; font-size: 10.5pt; }
+          h1 { color: #0f172a; font-size: 16pt; margin-bottom: 4px; }
+          table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+          th { background: #0f172a; color: #ffffff; padding: 8px; border: 1px solid #cbd5e1; font-size: 9pt; }
+          td { padding: 8px; border: 1px solid #cbd5e1; font-size: 9pt; }
+        </style>
+        </head>
+        <body>
+          <h1>3Sci Competitive Radar Matrix</h1>
+          <p>Generated on ${new Date().toLocaleDateString()} • 3sci.com</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Company</th><th>Role</th>
+                ${activeParams.map(p => `<th>${parameterDefs[p].title}</th>`).join('')}
+              </tr>
+            </thead>
+            <tbody>
+      `;
+
+      companies.forEach(c => {
+        doc += `<tr><td><b>${c.name}</b></td><td>${c.is_benchmark ? 'Benchmark' : 'Target'}</td>`;
+        activeParams.forEach(p => {
+          doc += `<td>Active Dimension: ${parameterDefs[p].title}</td>`;
+        });
+        doc += `</tr>`;
+      });
+
+      doc += `</tbody></table></body></html>`;
+
+      const blob = new Blob(['\ufeff', doc], { type: 'application/msword' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `3Sci_Matrix_${Date.now()}.doc`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
     function copyPrompt(btn) {
       const text = document.getElementById('prompt-display').innerText;
       navigator.clipboard.writeText(text).then(() => {
@@ -626,55 +951,6 @@
           btn.style.color = "";
         }, 1800);
       });
-    }
-
-    function exportToWordDoc() {
-      const reportText = document.getElementById('report-output').innerText;
-      let doc = `
-        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-        <head><title>3Sci Competitive Radar Report</title>
-        <style>
-          body { font-family: Arial, sans-serif; font-size: 11pt; line-height: 1.5; }
-          h1 { color: #0f172a; font-size: 18pt; margin-bottom: 4px; }
-          table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-          th { background: #0f172a; color: #ffffff; padding: 8px; border: 1px solid #cbd5e1; text-align: left; font-size: 9.5pt; }
-          td { padding: 8px; border: 1px solid #cbd5e1; font-size: 9.5pt; vertical-align: top; }
-          .report-box { background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px; font-size: 10pt; white-space: pre-wrap; margin-bottom: 18px; }
-        </style>
-        </head>
-        <body>
-          <h1>3Sci Competitive Shift Radar & Landscape Report</h1>
-          <div style="color:#64748b; margin-bottom:16px;">Generated on ${new Date().toLocaleDateString()} • 3sci.com</div>
-          
-          <h2>1. Competitive Summary Matrix</h2>
-          <table>
-            <thead>
-              <tr><th>Company</th><th>Role</th></tr>
-            </thead>
-            <tbody>
-      `;
-
-      companies.forEach(c => {
-        doc += `<tr><td><b>${c.name}</b></td><td>${c.is_benchmark ? 'Benchmark Firm' : 'Target / Rival'}</td></tr>`;
-      });
-
-      doc += `</tbody></table>`;
-
-      if (reportText && reportText !== 'Analyzing company roster with Gemini 3.8 Flash... Please wait...') {
-        doc += `<h2>2. Executive Due Diligence Report (Gemini 3.8 Flash)</h2><div class="report-box">${reportText}</div>`;
-      }
-
-      doc += `<h2>3. Underlying Strategic Prompt for Report</h2><div class="report-box">${document.getElementById('prompt-display').innerText}</div></body></html>`;
-
-      const blob = new Blob(['\ufeff', doc], { type: 'application/msword' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `3Sci_Competitive_Report_${Date.now()}.doc`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
     }
 
     function downloadJsonConfig() {
