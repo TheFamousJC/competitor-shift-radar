@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 (async () => {
-  console.log("Generating Generic, Step-by-Step Technical Manual PDF...");
+  console.log("Generating Updated Technical Manual PDF (Generic Paths, 18 Angles, Dossier Exports)...");
 
   let logoBase64 = "";
   const logoPath = path.join(__dirname, 'templates', 'logo_white.png');
@@ -104,7 +104,7 @@ const path = require('path');
 </head>
 <body>
 
-  <!-- PAGE 1: PREREQUISITES & ENVIRONMENT SETUP -->
+  <!-- PAGE 1: PREREQUISITES & SETUP -->
   <div class="page">
     <div class="header-banner">
       <img src="${logoBase64}" class="header-logo" alt="3Sci Logo">
@@ -115,10 +115,10 @@ const path = require('path');
     </div>
 
     <h1>Complete Technical Setup & Deployment Manual</h1>
-    <p>This technical guide provides portable, cross-platform instructions to set up, customize, and deploy the <strong>Competitor Shift Radar</strong>. Follow these step-by-step instructions to prepare your environment, install dependencies, run scripts, and publish to GitHub Pages.</p>
+    <p>This technical guide provides portable, cross-platform instructions to configure, run, and deploy the <strong>Competitor Shift Radar</strong>. Follow these step-by-step instructions to prepare your environment, install dependencies, compile PDF manuals, and publish to GitHub Pages.</p>
 
     <div class="callout">
-      <strong>Universal Path Notice:</strong> All examples throughout this guide use generic paths like <code>&lt;YOUR_PROJECT_DIRECTORY&gt;</code> (for example: <code>C:\\projects\\competitor-shift-radar</code> on Windows or <code>~/projects/competitor-shift-radar</code> on macOS/Linux). Replace this placeholder with the actual folder on your machine.
+      <strong>Universal Path Notice:</strong> All examples throughout this guide use generic paths like <code>&lt;YOUR_PROJECT_DIRECTORY&gt;</code> (for example: <code>C:\\projects\\competitor-shift-radar</code> on Windows or <code>~/projects/competitor-shift-radar</code> on macOS/Linux). Replace this placeholder with the actual folder on your local machine.
     </div>
 
     <h2>1. Step-by-Step Software Prerequisites</h2>
@@ -129,7 +129,7 @@ const path = require('path');
       <li>Go to <code>https://nodejs.org</code> and download the recommended <strong>LTS (Long Term Support)</strong> installer.</li>
       <li>Run the installer and accept all default settings. Verify in your terminal/PowerShell:</li>
     </ul>
-    <div class="code-box">node -v     # Should return v18.0.0 or higher (e.g. v20.x, v22.x)
+    <div class="code-box">node -v     # Should return v18.0.0 or higher (e.g. v20.x, v22.x, v24.x)
 npm -v      # Confirms the Node Package Manager is active</div>
 
     <p><strong><span class="step-badge">2</span> Install Git:</strong></p>
@@ -173,7 +173,7 @@ npm install puppeteer</div>
     <div class="footer-note">3Sci Open Source Work Hack #4 • Environment Configuration • 3sci.com</div>
   </div>
 
-  <!-- PAGE 2: ARCHITECTURE & SCRIPTS -->
+  <!-- PAGE 2: DATA SCHEMAS & SCRIPTS -->
   <div class="page">
     <div class="header-banner">
       <img src="${logoBase64}" class="header-logo" alt="3Sci Logo">
@@ -184,13 +184,13 @@ npm install puppeteer</div>
     </div>
 
     <h2>4. Target Roster Schema (data/companies.json)</h2>
-    <p>The system is streamlined around entity names. The <code>is_benchmark</code> flag identifies the primary organization that all rivals are evaluated against:</p>
+    <p>The system is streamlined around entity names. The <code>is_benchmark</code> flag identifies the primary baseline that all contenders are systematically evaluated against:</p>
 
     <div class="code-box">[
-  { "name": "Primary Firm (Benchmark)", "is_benchmark": true },
-  { "name": "Competitor Alpha", "is_benchmark": false },
-  { "name": "Competitor Beta", "is_benchmark": false },
-  { "name": "Competitor Gamma", "is_benchmark": false }
+  { "name": "Primary Baseline Subject", "is_benchmark": true },
+  { "name": "Contender Alpha", "is_benchmark": false },
+  { "name": "Contender Beta", "is_benchmark": false },
+  { "name": "Contender Gamma", "is_benchmark": false }
 ]</div>
 
     <h2>5. Headless Web Scraper Engine (build_dossier.cjs)</h2>
@@ -215,10 +215,10 @@ const path = require('path');
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36');
 
   let outputSummary = "# Competitive Matrix Dossier\\n\\n";
-  outputSummary += "| Company | Evaluation Role | Ingestion Status |\\n| :--- | :--- | :--- |\\n";
+  outputSummary += "| Subject | Evaluation Role | Ingestion Status |\\n| :--- | :--- | :--- |\\n";
 
   for (const item of companies) {
-    const role = item.is_benchmark ? "**Benchmark Baseline**" : "Target Competitor";
+    const role = item.is_benchmark ? "**Benchmark Baseline**" : "Contender / Target";
     console.log(\`Processing: \${item.name}...\`);
     outputSummary += \`| **\${item.name}** | \${role} | Indexed ✓ |\\n\`;
   }
@@ -256,13 +256,13 @@ package-lock.json
     <p>The dashboard dynamically manages active comparison dimensions. Selecting or deselecting a parameter pill modifies table rendering and updates the underlying AI prompt:</p>
 
     <div class="code-box">const parameterDefs = {
-  general: { id: "general", title: "General Landscape Overview", default: true },
-  product: { id: "product", title: "Core Product / Value Prop", default: true },
-  target:  { id: "target",  title: "Target Customer & Positioning", default: true },
-  moat:    { id: "moat",    title: "Observed Moat / Vulnerability", default: true },
-  pricing: { id: "pricing", title: "Pricing Model & Tiers", default: false },
-  tech:    { id: "tech",    title: "Tech Stack / Velocity", default: false },
-  culture: { id: "culture", title: "Hiring & Culture Signals", default: false }
+  general: { id: "general", title: "General Landscape Overview" },
+  product: { id: "product", title: "Core Product / Value Prop" },
+  target:  { id: "target",  title: "Target Customer & Positioning" },
+  moat:    { id: "moat",    title: "Observed Moat / Vulnerability" },
+  pricing: { id: "pricing", title: "Pricing Model & Tiers" },
+  tech:    { id: "tech",    title: "Tech Stack / Velocity" },
+  culture: { id: "culture", title: "Hiring & Culture Signals" }
 };
 
 let activeParams = ["general", "product", "target", "moat"];
@@ -282,9 +282,8 @@ function toggleParameter(paramKey) {
     <p>The dashboard calls the modern <code>gemini-3.8-flash</code> endpoint directly from the browser. API keys are stored solely in the user's local browser storage (<code>localStorage</code>) with zero server telemetry:</p>
 
     <div class="code-box">async function runLiveGeminiReport() {
-  const apiKey = document.getElementById('gemini-api-key').value.trim() 
-                 || localStorage.getItem('3sci_gemini_key') || '';
-  if (!apiKey) return alert("Please provide a valid Google Gemini API Key.");
+  const apiKey = getApiKey();
+  if (!apiKey) return alert("Please provide a valid Google Gemini API Key in the top header.");
 
   const promptText = generateCustomPrompt();
   const endpoint = \`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=\${apiKey}\`;
@@ -297,7 +296,8 @@ function toggleParameter(paramKey) {
     });
     const data = await response.json();
     if (data.candidates && data.candidates[0]?.content?.parts[0]?.text) {
-      document.getElementById('report-output').innerText = data.candidates[0].content.parts[0].text;
+      rawReportMarkdown = data.candidates[0].content.parts[0].text;
+      document.getElementById('report-output').innerHTML = formatMarkdownToHtml(rawReportMarkdown);
       document.getElementById('report-wrapper').style.display = 'flex';
     } else {
       document.getElementById('report-output').innerText = \`API Error: \${data.error?.message || 'Unknown error'}\`;
@@ -307,25 +307,25 @@ function toggleParameter(paramKey) {
   }
 }</div>
 
-    <h2>9. Client-Side Word (.DOC) & PDF Export Serialization</h2>
-    <p>Word exports are generated in memory using standard UTF-8 Blob serialization, triggering an instant browser file download without third-party services:</p>
+    <h2>9. Client-Side Word (.DOC) & PDF Dossier Serialization</h2>
+    <p>Word exports are generated in memory using standard UTF-8 Blob serialization, embedding an Executive Overview Table, the active Matrix, and formatted AI briefings without server overhead:</p>
 
     <div class="code-box">function downloadReportDoc() {
-  const reportText = document.getElementById('report-output').innerText;
-  let htmlDoc = \`&lt;html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word'&gt;
-    &lt;head&gt;&lt;style&gt;body{font-family:Arial;font-size:11pt;line-height:1.5;} pre{white-space:pre-wrap;}&lt;/style&gt;&lt;/head&gt;
-    &lt;body&gt;&lt;h1&gt;Executive Intelligence Report&lt;/h1&gt;&lt;pre&gt;\${reportText}&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;\`;
+  const dossierHtml = generateExportDossierHtml();
+  const docTemplate = \`&lt;html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word'&gt;
+    &lt;head&gt;&lt;meta charset='utf-8'&gt;&lt;style&gt;body{font-family:Calibri,Arial;font-size:10pt;line-height:1.5;margin:20mm;}&lt;/style&gt;&lt;/head&gt;
+    &lt;body&gt;\${dossierHtml}&lt;/body&gt;&lt;/html&gt;\`;
 
-  const blob = new Blob(['\\ufeff', htmlDoc], { type: 'application/msword' });
+  const blob = new Blob(['\\ufeff', docTemplate], { type: 'application/msword' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = \`Competitive_Report_\${Date.now()}.doc\`;
+  a.download = \`3Sci_Dossier_\${Date.now()}.doc\`;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }</div>
 
-    <div class="footer-note">3Sci Open Source Work Hack #4 • Gemini 3.8 Flash & Export Engines • 3sci.com</div>
+    <div class="footer-note">3Sci Open Source Work Hack #4 • Gemini 3.8 Flash & Dossier Export Architecture • 3sci.com</div>
   </div>
 
   <!-- PAGE 4: GITHUB DEPLOYMENT & VERIFICATION -->
@@ -359,7 +359,7 @@ git init
 git add .
 
 # 4. Create your commit with a descriptive message
-git commit -m "Deploy: names-only roster, auto matrix, Gemini 3.8 Flash, and export engines"
+git commit -m "Deploy: 18 analysis angles, executive dossier exports, and AI-differentiated matrix"
 
 # 5. Set the default branch name to 'main'
 git branch -M main
@@ -392,24 +392,24 @@ git push -u origin main</div>
       </thead>
       <tbody>
         <tr>
-          <td><strong>Roster Management</strong></td>
-          <td>Type names in roster; toggle Benchmark radio.</td>
-          <td>Matrix updates instantly; selected benchmark highlights in blue.</td>
+          <td><strong>Top API Key Input</strong></td>
+          <td>Enter API key in header; refresh browser.</td>
+          <td>Key persists in <code>localStorage</code>; auto-authenticates AI calls.</td>
         </tr>
         <tr>
-          <td><strong>Parameter Filters</strong></td>
-          <td>Click "General Landscape Overview" or "Pricing".</td>
-          <td>Table columns show/hide instantly; AI prompt updates with selected tags.</td>
+          <td><strong>AI Matrix Population</strong></td>
+          <td>Click <em>Populate Matrix with AI</em>.</td>
+          <td>All cells populate with company-specific intelligence; cells remain editable.</td>
         </tr>
         <tr>
-          <td><strong>Gemini 3.8 Flash API</strong></td>
-          <td>Paste API key and click <em>Generate Report</em>.</td>
-          <td>Outputs multi-section due diligence report directly in browser view.</td>
+          <td><strong>18 Analytical Angles</strong></td>
+          <td>Switch to <em>Product & Price Comparisons</em> or <em>SWOT</em>.</td>
+          <td>Prompt studio recalibrates personas, scoring rubrics, and diagnostic questions.</td>
         </tr>
         <tr>
-          <td><strong>Direct Document Export</strong></td>
+          <td><strong>Executive Dossier Export</strong></td>
           <td>Click <em>Download Report (.DOC)</em> or <em>(PDF)</em>.</td>
-          <td>Browser initiates immediate download of formatted document.</td>
+          <td>Exports formatted dossier featuring overview table, matrix grid, and narrative.</td>
         </tr>
       </tbody>
     </table>
